@@ -1,0 +1,40 @@
+.home-page {
+  background-color: var(--color-default-background);
+  height: 100vh;
+
+  &__form {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+
+    &__input {
+      width: 60vw;
+      height: 40px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    &__button {
+      border: 1px solid #ccc;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 8px 10px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: #ccc;
+      }
+    }
+  }
+}
+
+.teste {
+  display: flex;
+  justify-content: space-evenly;
+}

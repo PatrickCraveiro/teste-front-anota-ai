@@ -1,0 +1,70 @@
+.card__content {
+  width: 250px;
+  height: 350px;
+  position: relative;
+  transition: transform 0.3s ease;
+  box-shadow: 0px 2px 8px 1px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &__button {
+    background-image: url("../../../../assets/imagens/close.svg");
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 2;
+    right: -5px;
+    top: -10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  &__img {
+    height: 40%;
+    position: relative;
+    img {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 100%;
+      width: 100%;
+    }
+    &__type {
+      bottom: 5px;
+      right: 5px;
+      position: absolute;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-family: "Urbane Condensed Light";
+      font-size: 0.7rem;
+      color: white;
+
+      &.color-1 {
+        background-color: var(--color-type-1);
+      }
+      &.color-2 {
+        background-color: var(--color-type-2);
+      }
+      &.color-3 {
+        background-color: var(--color-type-3);
+      }
+    }
+  }
+  &__text {
+    background-color: #fff;
+    height: 60%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    &__title {
+      font-size: 2rem;
+      font-family: "Urbane Condensed Medium";
+      padding: 10px;
+    }
+    &__description {
+      font-family: "Urbane Condensed Light";
+      padding: 10px;
+    }
+  }
+}
