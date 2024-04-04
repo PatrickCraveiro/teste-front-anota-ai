@@ -20,12 +20,22 @@
       </button>
     </form>
 
-    <div class="card-container">
+    <div class="home-page__card-container" *ngIf="cardData.length">
       <app-card
         *ngFor="let card of cardData"
         (onDeleteCard)="onDeleteCard($event)"
         [card]="card"
       ></app-card>
     </div>
+
+    <div class="home-page__error" *ngIf="!cardData.length && !isLoading">
+      <p class="home-page__error__text">Sua busca não teve resultado</p>
+
+      <button class="home-page__error__button" (click)="fetchCardData()">
+        Recarregar lista de produtos
+      </button>
+    </div>
   </main>
+
+  <app-spinner [isLoading]="isLoading"></app-spinner>
 </div>

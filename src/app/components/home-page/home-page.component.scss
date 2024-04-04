@@ -43,10 +43,33 @@
       }
     }
   }
+
+  &__card-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  &__error {
+    &__text {
+      font-family: "Urbane Condensed Light";
+      text-align: center;
+      padding: 10px;
+    }
+
+    &__button {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      height: 38px;
+      color: #ffffff;
+      background-color: var(--color-input-outline);
+      border-color: var(--color-input-outline);
+      border-radius: 5px;
+      font-family: "Urbane Condensed Medium";
+      margin: 0 auto;
+      cursor: pointer;
+    }
+  }
 }
 
-.card-container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}

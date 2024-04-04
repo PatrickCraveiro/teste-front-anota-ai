@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FrontendInterviewMockDataService } from '../../shared/services/frontend-interview-mock-data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICardResponse } from './card/@support/card.component.interface';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +10,7 @@ import { ICardResponse } from './card/@support/card.component.interface';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
+  isLoading = true;
   cardData: ICardResponse[] = [];
   cardDataInServer: ICardResponse[] = [];
   homePageForm!: FormGroup;
@@ -27,15 +29,24 @@ export class HomePageComponent {
   }
 
   fetchCardData() {
-    this.dataService.getCardData().subscribe(
-      (response) => {
-        this.cardData = response;
-        this.cardDataInServer = response;
-      },
-      (error) => {
-        console.error('Erro ao obter os dados:', error);
-      }
-    );
+    this.isLoading = true
+    this.dataService
+      .getCardData()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          this.cardData = response;
+          this.cardDataInServer = response;
+        },
+        error: (error) => {
+          this.cardData = [];
+          console.error('Erro ao obter os dados:', error);
+        },
+      });
   }
 
   handleClickSearch() {
