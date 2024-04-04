@@ -7,8 +7,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from '../../shared/components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [HomePageComponent, HeaderComponent, CardComponent, SpinnerComponent],
-  imports: [CommonModule, ReactiveFormsModule],
+  declarations: [HomePageComponent, CardComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SpinnerComponent,
+    HeaderComponent,
+  ],
   exports: [HomePageComponent],
 })
 export class HomePageModule {}

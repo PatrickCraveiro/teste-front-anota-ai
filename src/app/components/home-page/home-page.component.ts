@@ -13,23 +13,18 @@ export class HomePageComponent {
   isLoading = true;
   cardData: ICardResponse[] = [];
   cardDataInServer: ICardResponse[] = [];
-  homePageForm!: FormGroup;
+  homePageForm = this.formBuilder.group({
+    search: ['', Validators.required],
+  });
   constructor(
     private dataService: FrontendInterviewMockDataService,
     private formBuilder: FormBuilder
   ) {
-    this.createForm();
     this.fetchCardData();
   }
 
-  private createForm() {
-    this.homePageForm = this.formBuilder.group({
-      search: ['', Validators.required],
-    });
-  }
-
   fetchCardData() {
-    this.isLoading = true
+    this.isLoading = true;
     this.dataService
       .getCardData()
       .pipe(
@@ -50,7 +45,7 @@ export class HomePageComponent {
   }
 
   handleClickSearch() {
-    const search = this.homePageForm.get('search')?.value;
+    const search = this.homePageForm.controls.search.value ?? '';
 
     this.cardData = this.cardDataInServer.filter(
       (card) =>
