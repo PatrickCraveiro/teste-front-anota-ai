@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FrontendInterviewMockDataService } from '../../shared/services/frontend-interview-mock-data.service';
-import {
-  ICardResponse,
-} from './card/@support/card.component.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ICardResponse } from './card/@support/card.component.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -11,18 +10,41 @@ import {
 })
 export class HomePageComponent {
   cardData: ICardResponse[] = [];
-  constructor(private dataService: FrontendInterviewMockDataService) {
+  cardDataInServer: ICardResponse[] = [];
+  homePageForm!: FormGroup;
+  constructor(
+    private dataService: FrontendInterviewMockDataService,
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
     this.fetchCardData();
+  }
+
+  private createForm() {
+    this.homePageForm = this.formBuilder.group({
+      search: ['', Validators.required],
+    });
   }
 
   fetchCardData() {
     this.dataService.getCardData().subscribe(
       (response) => {
         this.cardData = response;
+        this.cardDataInServer = response;
       },
       (error) => {
         console.error('Erro ao obter os dados:', error);
       }
+    );
+  }
+
+  handleClickSearch() {
+    const search = this.homePageForm.get('search')?.value;
+
+    this.cardData = this.cardDataInServer.filter(
+      (card) =>
+        card.title.toLowerCase().includes(search.toLowerCase()) ||
+        card.description.toLowerCase().includes(search.toLowerCase())
     );
   }
 

@@ -19,6 +19,9 @@
     top: -10px;
     border-radius: 20px;
     border: 1px solid #ccc;
+    background-size: 22px 22px;
+    background-position: center;
+    background-color: #fff;
     cursor: pointer;
   }
 
@@ -39,7 +42,7 @@
       border-radius: 5px;
       font-family: "Urbane Condensed Light";
       font-size: 0.7rem;
-      color: white;
+      color: #fff;
 
       &.color-1 {
         background-color: var(--color-type-1);
