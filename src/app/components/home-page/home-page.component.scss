@@ -2,7 +2,7 @@
   background-color: var(--color-default-background);
   height: 100vh;
 
-  &__form {
+  &__search-form {
     width: fit-content;
     margin: 0 auto;
     padding: 40px;
@@ -34,7 +34,7 @@
   }
 }
 
-.teste {
+.card-container {
   display: flex;
   justify-content: space-evenly;
 }

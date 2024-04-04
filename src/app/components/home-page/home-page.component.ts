@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { FrontendInterviewMockData } from '../../shared/services/frontend-interview-mock-data.service';
+import { FrontendInterviewMockDataService } from '../../shared/services/frontend-interview-mock-data.service';
+import {
+  ICardResponse,
+} from './card/@support/card.component.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -7,11 +10,23 @@ import { FrontendInterviewMockData } from '../../shared/services/frontend-interv
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent {
-  constructor(private teste: FrontendInterviewMockData) {}
-
-  getaa() {
-    this.teste.getDados();
+  cardData: ICardResponse[] = [];
+  constructor(private dataService: FrontendInterviewMockDataService) {
+    this.fetchCardData();
   }
 
-  // Lógica do componente pode ser adicionada aqui
+  fetchCardData() {
+    this.dataService.getCardData().subscribe(
+      (response) => {
+        this.cardData = response;
+      },
+      (error) => {
+        console.error('Erro ao obter os dados:', error);
+      }
+    );
+  }
+
+  onDeleteCard(cardId: number) {
+    this.cardData = this.cardData.filter((card) => card.id !== cardId);
+  }
 }

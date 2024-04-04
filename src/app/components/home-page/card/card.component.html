@@ -1,16 +1,19 @@
 <div class="card__content">
-  <button class="card__content__button" (click)="deleteCard()"></button>
+  <button
+    class="card__content__button"
+    (click)="handleClickDeleteCard(card.id)"
+  ></button>
 
   <div class="card__content__img">
-    <div class="card__content__img__type color-{{ type }}">
-      {{ getType(type) }}
+    <div class="card__content__img__type color-{{ card.type }}">
+      {{ getCardType(card.type) }}
     </div>
-    <img [src]="imgSrc" alt="" srcset="" />
+    <img [src]="card.img" alt="" srcset="" />
   </div>
 
   <div class="card__content__text">
-    <h1 class="card__content__text__title">{{ title }}</h1>
+    <h1 class="card__content__text__title">{{ card.title }}</h1>
 
-    <p class="card__content__text__description">{{ description }}</p>
+    <p class="card__content__text__description">{{ card.description }}</p>
   </div>
 </div>

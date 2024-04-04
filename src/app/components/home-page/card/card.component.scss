@@ -57,14 +57,20 @@
     height: 60%;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    padding: 10px;
     &__title {
+      margin-bottom: 10px;
       font-size: 2rem;
       font-family: "Urbane Condensed Medium";
-      padding: 10px;
     }
     &__description {
       font-family: "Urbane Condensed Light";
-      padding: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 8;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      line-height: 1.3;
     }
   }
 }

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ITypes } from './@support/card.component.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ICardResponse, CardType } from './@support/card.component.interface';
 
 @Component({
   selector: 'app-card',
@@ -7,23 +7,20 @@ import { ITypes } from './@support/card.component.interface';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
-  @Input() title!: string;
-  @Input() description!: string;
-  @Input() imgSrc!: string;
-  @Input() type!: ITypes;
+  @Input() card!: ICardResponse;
+  @Output() onDeleteCard = new EventEmitter<number>();
 
-  types = {
+  cardTypes = {
     1: 'Paisagem',
     2: 'Flor',
     3: 'Pizza',
   };
 
-  getType(type: ITypes): string {
-    return this.types[type];
+  getCardType(type: CardType): string {
+    return this.cardTypes[type];
   }
 
-  deleteCard() {
-    console.log('delete');
+  handleClickDeleteCard(cardId: number) {
+    this.onDeleteCard.emit(cardId);
   }
-  // Lógica do componente pode ser adicionada aqui
 }
